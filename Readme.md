@@ -32,8 +32,18 @@ Heads up, You will need an organization.
 
     Run the runner:
 
+    **Docker**
+
     ```bash
     docker run -it github-actions-runner -e ORGANIZATION [your-organization] -e ACCESS_TOKEN [your-token]
+    ```
+
+    **Docker Compose**
+
+    Or update the `docker-compose.yml` environments section and run like this:
+
+    ```bash
+    docker-compose up --build
     ```
 
     The log output will looks like this. When you see `Listening for Jobs` log it means your runner is ready and you also can see it on actions page in your organization.
