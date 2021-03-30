@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  github-actions-runner:
+    image: github-actions-runner
+    build: .
+    environment:
+      ORGANIZATION: org
+      ACCESS_TOKEN: token
+      RUNNER_NAME: name
+      LABLES: self-hosted, docker
