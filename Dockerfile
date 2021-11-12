@@ -2,7 +2,7 @@
 FROM ubuntu:20.04
 
 # set the github runner version
-ARG RUNNER_VERSION="2.277.1"
+ARG RUNNER_VERSION="2.284.0"
 
 # set timezone
 ENV TZ="America/Sao_Paulo"
@@ -13,7 +13,23 @@ RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
 
 # install python and the packages the your code depends on along with jq so we can parse JSON
 # add additional packages as necessary
-RUN apt-get install -y curl jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev
+RUN apt-get install -y \
+    curl \
+    jq \
+    build-essential \
+    libssl-dev \
+    libffi-dev \
+    python3 \
+    python3-venv \
+    python3-dev \
+    python3-pip \
+    apt-transport-https \
+    ca-certificates \
+    gnupg2 \
+    software-properties-common \
+    unzip
+
+RUN pip install --upgrade awscli
 
 # cd into the user directory, download and unzip the github actions runner
 RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
